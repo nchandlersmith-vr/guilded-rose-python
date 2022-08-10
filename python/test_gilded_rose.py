@@ -49,3 +49,16 @@ class TestGildedRose:
         result = app.items[0]
 
         assert result.sell_in == expected_sell_in
+
+    def test_update_quality_decrements_quality_by_1_when_not_expired(self):
+        sell_in = 1
+        starting_quality = 10
+        expected_quality = 9
+        items = [Item(NORMAL_ITEM_NAME, sell_in, starting_quality)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.quality == expected_quality
