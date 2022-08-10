@@ -138,3 +138,39 @@ class TestGildedRose:
         result = app.items[0]
 
         assert result.name == AGED_BRIE_NAME
+
+    def test_update_quality_aged_brie_decrements_sell_in_by_1_when_not_expired(self):
+        starting_sell_in = 1
+        expected_sell_in = 0
+        items = [Item(AGED_BRIE_NAME, starting_sell_in, 10)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.sell_in == expected_sell_in
+
+    def test_update_quality_aged_brie_decrements_sell_in_by_1_when_expires_today(self):
+        starting_sell_in = 0
+        expected_sell_in = -1
+        items = [Item(AGED_BRIE_NAME, starting_sell_in, 10)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.sell_in == expected_sell_in
+
+    def test_update_quality_aged_brie_decrements_sell_in_by_1_when_expired(self):
+        starting_sell_in = -1
+        expected_sell_in = -2
+        items = [Item(AGED_BRIE_NAME, starting_sell_in, 10)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.sell_in == expected_sell_in
