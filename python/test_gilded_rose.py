@@ -631,3 +631,55 @@ class TestGildedRose:
         result = app.items[0]
 
         assert result.quality == expected_quality
+
+    def test_update_quality_backstage_passes_increases_quality_by_3_when_4_days_til_concert(self):
+        sell_in = 4
+        starting_quality = 20
+        expected_quality = 23
+        items = [Item(BACKSTAGE_PASSES_NAME, sell_in, starting_quality)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.quality == expected_quality
+
+    def test_update_quality_backstage_passes_quality_does_not_exceed_max_when_4_days_til_concert_starting_at_max(self):
+        sell_in = 4
+        starting_quality = MAX_ITEM_QUALITY
+        expected_quality = MAX_ITEM_QUALITY
+        items = [Item(BACKSTAGE_PASSES_NAME, sell_in, starting_quality)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.quality == expected_quality
+
+    def test_update_quality_backstage_passes_quality_does_not_exceed_max_when_4_days_til_concert_starting_at_max_minus_1(self):
+        sell_in = 4
+        starting_quality = MAX_ITEM_QUALITY - 1
+        expected_quality = MAX_ITEM_QUALITY
+        items = [Item(BACKSTAGE_PASSES_NAME, sell_in, starting_quality)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.quality == expected_quality
+
+    def test_update_quality_backstage_passes_quality_does_not_exceed_max_when_4_days_til_concert_starting_at_max_minus_2(self):
+        sell_in = 4
+        starting_quality = MAX_ITEM_QUALITY - 2
+        expected_quality = MAX_ITEM_QUALITY
+        items = [Item(BACKSTAGE_PASSES_NAME, sell_in, starting_quality)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.quality == expected_quality
