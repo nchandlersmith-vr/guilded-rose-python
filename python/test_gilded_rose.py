@@ -1,6 +1,6 @@
 from python.gilded_rose import GildedRose, Item
 
-NORMAL_ITEM_NAME = "normal"
+NORMAL_ITEM_NAME = "any string not already used in another name"
 AGED_BRIE_NAME = "Aged Brie"
 MAX_ITEM_QUALITY = 50
 
