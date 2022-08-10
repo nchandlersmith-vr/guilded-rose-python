@@ -3,6 +3,7 @@
 class GildedRose(object):
     SULFURUS = "Sulfuras, Hand of Ragnaros"
     AGED_BRIE = "Aged Brie"
+    BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert"
 
     def __init__(self, items):
         self.items = items
@@ -10,12 +11,22 @@ class GildedRose(object):
     def update_quality(self):
         for item in self.items:
             if item.name == GildedRose.SULFURUS:
+                pass # d sulfurus does not degrade
                 break
-            if item.name == GildedRose.AGED_BRIE:
+            elif item.name == GildedRose.AGED_BRIE:
                 if item.sell_in > 0:
                     item.quality += 1
                 else:
                     item.quality += 2
+                item.quality = min(item.quality, 50)
+                item.sell_in -= 1
+                break
+            elif item.name == GildedRose.BACKSTAGE_PASSES:
+                item.quality += 1
+                if item.sell_in < 11:
+                    item.quality += 1
+                if item.sell_in < 6:
+                    item.quality += 1
                 item.quality = min(item.quality, 50)
                 item.sell_in -= 1
                 break
