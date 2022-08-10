@@ -466,7 +466,7 @@ class TestGildedRose:
 
         assert result.quality == expected_quality
 
-    def test_update_quality_backstage_passes_increases_quality_by_1_when_10_days_til_concert(self):
+    def test_update_quality_backstage_passes_increases_quality_by_2_when_10_days_til_concert(self):
         sell_in = 10
         starting_quality = 20
         expected_quality = 22
@@ -496,6 +496,19 @@ class TestGildedRose:
         sell_in = 10
         starting_quality = MAX_ITEM_QUALITY - 1
         expected_quality = MAX_ITEM_QUALITY
+        items = [Item(BACKSTAGE_PASSES_NAME, sell_in, starting_quality)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.quality == expected_quality
+
+    def test_update_quality_backstage_passes_increases_quality_by_2_when_9_days_til_concert(self):
+        sell_in = 9
+        starting_quality = 20
+        expected_quality = 22
         items = [Item(BACKSTAGE_PASSES_NAME, sell_in, starting_quality)]
         app = GildedRose(items)
 
