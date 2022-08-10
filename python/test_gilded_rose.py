@@ -404,6 +404,42 @@ class TestGildedRose:
 
         assert result.name == BACKSTAGE_PASSES_NAME
 
+    def test_update_quality_backstage_passes_decrements_sell_in_by_1_when_11_days_til_concert(self):
+        starting_sell_in = 1
+        expected_sell_in = 0
+        items = [Item(BACKSTAGE_PASSES_NAME, starting_sell_in, 10)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.sell_in == expected_sell_in
+
+    def test_update_quality_backstage_passes_decrements_sell_in_by_1_when_10_days_til_concert(self):
+        starting_sell_in = 1
+        expected_sell_in = 0
+        items = [Item(BACKSTAGE_PASSES_NAME, starting_sell_in, 10)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.sell_in == expected_sell_in
+
+    def test_update_quality_backstage_passes_decrements_sell_in_by_5_when_10_days_til_concert(self):
+        starting_sell_in = 1
+        expected_sell_in = 0
+        items = [Item(BACKSTAGE_PASSES_NAME, starting_sell_in, 10)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.sell_in == expected_sell_in
+
     def test_update_quality_backstage_passes_decrements_sell_in_by_1_when_not_expired(self):
         starting_sell_in = 1
         expected_sell_in = 0
