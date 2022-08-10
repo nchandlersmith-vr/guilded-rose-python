@@ -2,6 +2,7 @@ from python.gilded_rose import GildedRose, Item
 
 NORMAL_ITEM_NAME = "normal"
 AGED_BRIE_NAME = "Aged Brie"
+MAX_ITEM_QUALITY = 50
 
 
 class TestGildedRose:
@@ -231,6 +232,19 @@ class TestGildedRose:
         sell_in = -1
         starting_quality = 10
         expected_quality = 12
+        items = [Item(AGED_BRIE_NAME, sell_in, starting_quality)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.quality == expected_quality
+
+    def test_update_quality_aged_brie_quality_cannot_exceed_max_when_not_expired(self):
+        sell_in = 1
+        starting_quality = MAX_ITEM_QUALITY
+        expected_quality = MAX_ITEM_QUALITY
         items = [Item(AGED_BRIE_NAME, sell_in, starting_quality)]
         app = GildedRose(items)
 
