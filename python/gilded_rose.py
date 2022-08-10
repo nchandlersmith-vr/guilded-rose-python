@@ -2,6 +2,7 @@
 
 class GildedRose(object):
     SULFURUS = "Sulfuras, Hand of Ragnaros"
+    AGED_BRIE = "Aged Brie"
 
     def __init__(self, items):
         self.items = items
@@ -9,6 +10,14 @@ class GildedRose(object):
     def update_quality(self):
         for item in self.items:
             if item.name == GildedRose.SULFURUS:
+                break
+            if item.name == GildedRose.AGED_BRIE:
+                if item.sell_in > 0:
+                    item.quality += 1
+                else:
+                    item.quality += 2
+                item.quality = min(item.quality, 50)
+                item.sell_in -= 1
                 break
             if self._item_is_normal(item):
                 self._safe_degrade_quality(item)
