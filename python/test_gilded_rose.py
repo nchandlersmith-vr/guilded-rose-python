@@ -330,3 +330,14 @@ class TestGildedRose:
 
         assert result.sell_in == expected_sell_in
 
+    def test_update_quality_sulfuras_does_not_decrement_sell_in_when_expires_today(self):
+        starting_sell_in = 0
+        expected_sell_in = 0
+        items = [Item(SULFURAS_NAME, starting_sell_in, 10)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.sell_in == expected_sell_in
