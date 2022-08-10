@@ -1,4 +1,5 @@
-from python.gilded_rose import GildedRose, Item
+from python.gilded_rose import GildedRose
+from python.item import Item
 
 NORMAL_ITEM_NAME = "any string not already used in another name"
 AGED_BRIE_NAME = "Aged Brie"

@@ -20,7 +20,6 @@ class GildedRose(object):
                     item.quality += 2
                 item.quality = min(item.quality, 50)
                 item.sell_in -= 1
-                break
             elif item.name == GildedRose.BACKSTAGE_PASSES:
                 item.quality += 1
                 if item.sell_in < 11:
@@ -29,21 +28,9 @@ class GildedRose(object):
                     item.quality += 1
                 item.quality = min(item.quality, 50)
                 item.sell_in -= 1
-                break
             else:
                 item.quality -= 1
                 if item.sell_in < 1:
                     item.quality -= 1
                 item.quality = max(item.quality, 0)
                 item.sell_in -= 1
-                break
-
-
-class Item:
-    def __init__(self, name, sell_in, quality):
-        self.name = name
-        self.sell_in = sell_in
-        self.quality = quality
-
-    def __repr__(self):
-        return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
