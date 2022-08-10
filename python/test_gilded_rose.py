@@ -366,3 +366,16 @@ class TestGildedRose:
         result = app.items[0]
 
         assert result.quality == expected_quality
+
+    def test_update_quality_sulfuras_does_not_degrade_when_expires_today(self):
+        starting_sell_in = 0
+        starting_quality = 80
+        expected_quality = 80
+        items = [Item(SULFURAS_NAME, starting_sell_in, starting_quality)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.quality == expected_quality
