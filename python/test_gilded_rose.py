@@ -439,3 +439,16 @@ class TestGildedRose:
         result = app.items[0]
 
         assert result.sell_in == expected_sell_in
+
+    def test_update_quality_backstage_passes_increases_quality_by_1_when_11_days_til_concert(self):
+        sell_in = 11
+        starting_quality = 20
+        expected_quality = 21
+        items = [Item(BACKSTAGE_PASSES_NAME, sell_in, starting_quality)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.quality == expected_quality
