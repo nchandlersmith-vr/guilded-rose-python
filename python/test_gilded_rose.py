@@ -142,6 +142,19 @@ class TestGildedRose:
 
         assert result.quality == expected_quality
 
+    def test_update_quality_normal_item_cannot_be_negative_when_expired_starting_at_0_quality(self):
+        sell_in = -1
+        starting_quality = 0
+        expected_quality = 0
+        items = [Item(NORMAL_ITEM_NAME, sell_in, starting_quality)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.quality == expected_quality
+
     def test_update_quality_aged_brie_does_not_change_normal_item_name(self):
         items = [Item(AGED_BRIE_NAME, 10, 10)]
         app = GildedRose(items)
