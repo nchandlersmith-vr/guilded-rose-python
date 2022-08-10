@@ -11,7 +11,7 @@ class GildedRose(object):
     def update_quality(self):
         for item in self.items:
             if item.name == GildedRose.SULFURUS:
-                pass # d sulfurus does not degrade
+                pass  # sulfurus does not degrade
                 break
             elif item.name == GildedRose.AGED_BRIE:
                 if item.sell_in > 0:
