@@ -1,6 +1,7 @@
 from python.gilded_rose import GildedRose, Item
 
 NORMAL_ITEM_NAME = "normal"
+AGED_BRIE_NAME = "Aged Brie"
 
 
 class TestGildedRose:
@@ -127,3 +128,13 @@ class TestGildedRose:
         result = app.items[0]
 
         assert result.quality == expected_quality
+
+    def test_update_quality_aged_brie_does_not_change_normal_item_name(self):
+        items = [Item(AGED_BRIE_NAME, 10, 10)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.name == AGED_BRIE_NAME
