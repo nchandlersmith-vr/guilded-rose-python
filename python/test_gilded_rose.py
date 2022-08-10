@@ -2,11 +2,12 @@ from python.gilded_rose import GildedRose, Item
 
 NORMAL_ITEM_NAME = "any string not already used in another name"
 AGED_BRIE_NAME = "Aged Brie"
+SULFURAS_NAME = "Sulfuras, Hand of Ragnaros"
 MAX_ITEM_QUALITY = 50
 
 
 class TestGildedRose:
-    def test_update_quality_normal_item_does_not_change_normal_item_name(self):
+    def test_update_quality_normal_item_does_not_change_item_name(self):
         items = [Item(NORMAL_ITEM_NAME, 10, 10)]
         app = GildedRose(items)
 
@@ -156,7 +157,7 @@ class TestGildedRose:
 
         assert result.quality == expected_quality
 
-    def test_update_quality_aged_brie_does_not_change_normal_item_name(self):
+    def test_update_quality_aged_brie_does_not_change_item_name(self):
         items = [Item(AGED_BRIE_NAME, 10, 10)]
         app = GildedRose(items)
 
@@ -267,7 +268,8 @@ class TestGildedRose:
 
         assert result.quality == expected_quality
 
-    def test_update_quality_aged_brie_quality_cannot_exceed_max_when_expires_today_starting_quality_at_max_minus_1(self):
+    def test_update_quality_aged_brie_quality_cannot_exceed_max_when_expires_today_starting_quality_at_max_minus_1(
+            self):
         sell_in = 0
         starting_quality = MAX_ITEM_QUALITY - 1
         expected_quality = MAX_ITEM_QUALITY
@@ -305,3 +307,13 @@ class TestGildedRose:
         result = app.items[0]
 
         assert result.quality == expected_quality
+
+    def test_update_quality_sulfuras_does_not_change_item_name(self):
+        items = [Item(SULFURAS_NAME, 10, 10)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.name == SULFURAS_NAME
