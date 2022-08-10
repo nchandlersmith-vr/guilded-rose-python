@@ -62,3 +62,16 @@ class TestGildedRose:
         result = app.items[0]
 
         assert result.quality == expected_quality
+
+    def test_update_quality_decrements_quality_by_2_when_expires_today(self):
+        sell_in = 0
+        starting_quality = 10
+        expected_quality = 8
+        items = [Item(NORMAL_ITEM_NAME, sell_in, starting_quality)]
+        app = GildedRose(items)
+
+        app.update_quality()
+
+        result = app.items[0]
+
+        assert result.quality == expected_quality
