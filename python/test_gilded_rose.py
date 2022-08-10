@@ -356,10 +356,10 @@ class TestGildedRose:
         assert result.sell_in == expected_sell_in
 
     def test_update_quality_sulfuras_does_not_degrade_when_not_expired(self):
-        starting_sell_in = 1
+        sell_in = 1
         starting_quality = 80
         expected_quality = 80
-        items = [Item(SULFURAS_NAME, starting_sell_in, starting_quality)]
+        items = [Item(SULFURAS_NAME, sell_in, starting_quality)]
         app = GildedRose(items)
 
         app.update_quality()
@@ -369,10 +369,10 @@ class TestGildedRose:
         assert result.quality == expected_quality
 
     def test_update_quality_sulfuras_does_not_degrade_when_expires_today(self):
-        starting_sell_in = 0
+        sell_in = 0
         starting_quality = 80
         expected_quality = 80
-        items = [Item(SULFURAS_NAME, starting_sell_in, starting_quality)]
+        items = [Item(SULFURAS_NAME, sell_in, starting_quality)]
         app = GildedRose(items)
 
         app.update_quality()
@@ -382,10 +382,10 @@ class TestGildedRose:
         assert result.quality == expected_quality
 
     def test_update_quality_sulfuras_does_not_degrade_when_expired(self):
-        starting_sell_in = -1
+        sell_in = -1
         starting_quality = 80
         expected_quality = 80
-        items = [Item(SULFURAS_NAME, starting_sell_in, starting_quality)]
+        items = [Item(SULFURAS_NAME, sell_in, starting_quality)]
         app = GildedRose(items)
 
         app.update_quality()
