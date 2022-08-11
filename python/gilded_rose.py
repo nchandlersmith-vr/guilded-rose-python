@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+from python.item_evaluator.sulfuras_evaluator import SulfurasEvaluator
+from python.item_evaluator.aged_brie_evaluator import AgedBrieEvaluator
+from python.item_evaluator.backstage_passes_evaluator import BackstagePassesEvaluator
+from python.item_evaluator.normal_item_evaluator import NormalItemEvaluator
+
 
 class GildedRose(object):
     SULFURUS = "Sulfuras, Hand of Ragnaros"
@@ -7,30 +12,15 @@ class GildedRose(object):
 
     def __init__(self, items):
         self.items = items
+        self.evaluator_lookup = {
+            GildedRose.SULFURUS: SulfurasEvaluator(),
+            GildedRose.AGED_BRIE: AgedBrieEvaluator(),
+            GildedRose.BACKSTAGE_PASSES: BackstagePassesEvaluator()
+        }
 
     def update_quality(self):
         for item in self.items:
-            if item.name == GildedRose.SULFURUS:
-                pass  # sulfurus does not degrade
-                break
-            elif item.name == GildedRose.AGED_BRIE:
-                if item.sell_in > 0:
-                    item.quality += 1
-                else:
-                    item.quality += 2
-                item.quality = min(item.quality, 50)
-                item.sell_in -= 1
-            elif item.name == GildedRose.BACKSTAGE_PASSES:
-                item.quality += 1
-                if item.sell_in < 11:
-                    item.quality += 1
-                if item.sell_in < 6:
-                    item.quality += 1
-                item.quality = min(item.quality, 50)
-                item.sell_in -= 1
+            if item.name in self.evaluator_lookup.keys():
+                self.evaluator_lookup[item.name].evaluate(item)
             else:
-                item.quality -= 1
-                if item.sell_in < 1:
-                    item.quality -= 1
-                item.quality = max(item.quality, 0)
-                item.sell_in -= 1
+                NormalItemEvaluator().evaluate(item)
