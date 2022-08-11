@@ -1,5 +1,8 @@
+import pytest
+
 from python.item_evaluator.sulfuras_evaluator import SulfurasEvaluator
 from python.item import Item
+from python.exceptions import CannotEvaluateNonItemException
 
 SULFURAS_NAME = "Sulfuras, Hand of Ragnaros"
 
@@ -75,3 +78,8 @@ class TestSulfurasEvaluator:
         result = evaluator.evaluate(item)
 
         assert result.quality == expected_quality
+
+    def test_evaluate_throws_error_when_not_item_input(self):
+        with pytest.raises(CannotEvaluateNonItemException):
+            evaluator = SulfurasEvaluator()
+            evaluator.evaluate("")
