@@ -1,6 +1,7 @@
 import pytest
 
-from python.exceptions.exceptions import CannotEvaluateNonItemException, CannotEvaluateItemException
+from python.exceptions.cannot_evaluate_item_exception import CannotEvaluateItemException
+from python.exceptions.cannot_evaluate_non_item_exception import CannotEvaluateNonItemException
 from python.item import Item
 from python.item_evaluators.aged_brie_evaluator import AgedBrieEvaluator
 
