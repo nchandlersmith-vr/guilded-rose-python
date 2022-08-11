@@ -2,7 +2,7 @@ import pytest
 
 from python.item_evaluator.sulfuras_evaluator import SulfurasEvaluator
 from python.item import Item
-from python.exceptions.exceptions import CannotEvaluateNonItemException
+from python.exceptions.exceptions import CannotEvaluateNonItemException, CannotEvaluateItemException
 
 SULFURAS_NAME = "Sulfuras, Hand of Ragnaros"
 
@@ -84,3 +84,9 @@ class TestSulfurasEvaluator:
             evaluator = SulfurasEvaluator()
             evaluator.evaluate("")
         assert str(exc_info.value) == "Evaluator expected Item. Received <class 'str'>."
+
+    def test_evaluate_throws_error_when_item_not_aged_brie(self):
+        with pytest.raises(CannotEvaluateItemException) as exc_info:
+            evaluator = SulfurasEvaluator()
+            evaluator.evaluate(Item("Aged Brie", 10, 10))
+        assert str(exc_info.value) == "Evaluator expected Sulfuras, Hand of Ragnaros. Encountered Aged Brie."
