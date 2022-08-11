@@ -3,7 +3,7 @@ import pytest
 from python.gilded_rose import GildedRose
 from python.item import Item
 from python.item_evaluator_factories.item_evaluator_factory import ItemEvaluatorFactory
-from python.exceptions.exceptions import UnknownItemEvaluatorFactoryException
+from python.exceptions.unknown_item_evaluator_factory_exception import UnknownItemEvaluatorFactoryException
 
 NORMAL_ITEM_NAME = "any string not already used in another name"
 AGED_BRIE_NAME = "Aged Brie"

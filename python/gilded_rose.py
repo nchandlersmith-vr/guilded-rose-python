@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from python.item import Item
 from python.item_evaluator_factories.item_evaluator_factory_abstract_class import ItemEvaluatorFactoryAbstractClass
-from python.exceptions.exceptions import UnknownItemEvaluatorFactoryException
+from python.exceptions.unknown_item_evaluator_factory_exception import UnknownItemEvaluatorFactoryException
 
 
 class GildedRose(object):
