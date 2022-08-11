@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from python.item import Item
-from python.item_evaluator_factories.item_evaluator_factory import ItemEvaluatorFactory
 
 
 class GildedRose(object):
@@ -8,11 +7,11 @@ class GildedRose(object):
     AGED_BRIE = "Aged Brie"
     BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert"
 
-    def __init__(self, items: [Item]):
+    def __init__(self, items: [Item], item_evaluator_factory):
         self.items = items
-        self.item_evaluator_factory = ItemEvaluatorFactory()
+        self.item_evaluator_factory = item_evaluator_factory
 
     def update_quality(self) -> None:
         for item in self.items:
-            evaluator = self.item_evaluator_factory.create(item.name)
+            evaluator = self.item_evaluator_factory().create(item.name)
             evaluator.evaluate(item)
