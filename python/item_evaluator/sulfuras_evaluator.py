@@ -1,6 +1,6 @@
 from python.item import Item
 from python.item_evaluator.item_evaluator import ItemEvaluator
-from python.exceptions import CannotEvaluateNonItemException
+from python.exceptions.exceptions import CannotEvaluateNonItemException
 
 
 class SulfurasEvaluator(ItemEvaluator):

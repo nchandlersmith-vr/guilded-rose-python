@@ -2,7 +2,7 @@ import pytest
 
 from python.item_evaluator.sulfuras_evaluator import SulfurasEvaluator
 from python.item import Item
-from python.exceptions import CannotEvaluateNonItemException
+from python.exceptions.exceptions import CannotEvaluateNonItemException
 
 SULFURAS_NAME = "Sulfuras, Hand of Ragnaros"
 
