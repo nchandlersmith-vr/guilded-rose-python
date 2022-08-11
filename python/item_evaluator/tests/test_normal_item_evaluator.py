@@ -1,3 +1,6 @@
+import pytest
+
+from python.exceptions.exceptions import CannotEvaluateNonItemException
 from python.item import Item
 from python.item_evaluator.normal_item_evaluator import NormalItemEvaluator
 
@@ -130,3 +133,9 @@ class TestNormalItemEvaluator:
         result = evaluator.evaluate(item)
 
         assert result.quality == expected_quality
+
+    def test_evaluate_throws_error_when_not_item_input(self):
+        with pytest.raises(CannotEvaluateNonItemException) as exc_info:
+            evaluator = NormalItemEvaluator()
+            evaluator.evaluate("")
+        assert str(exc_info.value) == "Evaluator expected Item. Received <class 'str'>."
