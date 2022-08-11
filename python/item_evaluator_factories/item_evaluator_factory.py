@@ -3,7 +3,7 @@ from python.item_evaluators.aged_brie_evaluator import AgedBrieEvaluator
 from python.item_evaluators.backstage_passes_evaluator import BackstagePassesEvaluator
 from python.item_evaluators.item_evaluator import ItemEvaluator
 from python.item_evaluators.sulfuras_evaluator import SulfurasEvaluator
-from python.exceptions.exceptions import UnsupportedItem
+from python.item_evaluators.normal_item_evaluator import NormalItemEvaluator
 
 
 class ItemEvaluatorFactory(ItemEvaluatorFactoryAbstractClass):
@@ -18,5 +18,5 @@ class ItemEvaluatorFactory(ItemEvaluatorFactoryAbstractClass):
 
     def create(self, name: str) -> ItemEvaluator:
         if name not in ItemEvaluatorFactory.lookup.keys():
-            raise UnsupportedItem(name)
+            return NormalItemEvaluator()
         return ItemEvaluatorFactory.lookup[name]
