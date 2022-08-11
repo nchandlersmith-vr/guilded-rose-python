@@ -1,12 +1,11 @@
 from python.item import Item
 from python.item_evaluator.item_evaluator import ItemEvaluator
-from python.exceptions.exceptions import CannotEvaluateNonItemException
+from python.exceptions.exceptions import CannotEvaluateNonItemException, CannotEvaluateItemException
 
 
 class AgedBrieEvaluator(ItemEvaluator):
     def evaluate(self, item: Item) -> Item:
-        if not isinstance(item, Item):
-            raise CannotEvaluateNonItemException(item)
+        self._validate_item(item)
         if item.sell_in > 0:
             item.quality += 1
         else:
@@ -14,3 +13,9 @@ class AgedBrieEvaluator(ItemEvaluator):
         item.quality = min(item.quality, 50)
         item.sell_in -= 1
         return item
+
+    def _validate_item(self, item):
+        if not isinstance(item, Item):
+            raise CannotEvaluateNonItemException(item)
+        if item.name != "Aged Brie":
+            raise CannotEvaluateItemException("Aged Brie", item.name)
