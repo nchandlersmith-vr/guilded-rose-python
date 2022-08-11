@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from python.item_evaluator.sulfuras_evaluator import SulfurasEvaluator
-from python.item_evaluator.aged_brie_evaluator import AgedBrieEvaluator
-from python.item_evaluator.backstage_passes_evaluator import BackstagePassesEvaluator
-from python.item_evaluator.normal_item_evaluator import NormalItemEvaluator
+from python.item_evaluators.sulfuras_evaluator import SulfurasEvaluator
+from python.item_evaluators.aged_brie_evaluator import AgedBrieEvaluator
+from python.item_evaluators.backstage_passes_evaluator import BackstagePassesEvaluator
+from python.item_evaluators.normal_item_evaluator import NormalItemEvaluator
 
 
 class GildedRose(object):

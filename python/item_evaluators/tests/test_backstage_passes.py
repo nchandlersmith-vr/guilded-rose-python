@@ -1,7 +1,7 @@
 import pytest
 
 from python.exceptions.exceptions import CannotEvaluateNonItemException, CannotEvaluateItemException
-from python.item_evaluator.backstage_passes_evaluator import BackstagePassesEvaluator
+from python.item_evaluators.backstage_passes_evaluator import BackstagePassesEvaluator
 from python.item import Item
 
 BACKSTAGE_PASSES_NAME = "Backstage passes to a TAFKAL80ETC concert"

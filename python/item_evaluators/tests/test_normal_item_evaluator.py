@@ -2,7 +2,7 @@ import pytest
 
 from python.exceptions.exceptions import CannotEvaluateNonItemException
 from python.item import Item
-from python.item_evaluator.normal_item_evaluator import NormalItemEvaluator
+from python.item_evaluators.normal_item_evaluator import NormalItemEvaluator
 
 NORMAL_ITEM_NAME = "any string not already used in another name"
 

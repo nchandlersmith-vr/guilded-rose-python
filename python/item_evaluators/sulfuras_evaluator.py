@@ -1,5 +1,5 @@
 from python.item import Item
-from python.item_evaluator.item_evaluator import ItemEvaluator
+from python.item_evaluators.item_evaluator import ItemEvaluator
 from python.exceptions.exceptions import CannotEvaluateNonItemException, CannotEvaluateItemException
 
 

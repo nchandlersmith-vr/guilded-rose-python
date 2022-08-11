@@ -1,6 +1,6 @@
 import pytest
 
-from python.item_evaluator.sulfuras_evaluator import SulfurasEvaluator
+from python.item_evaluators.sulfuras_evaluator import SulfurasEvaluator
 from python.item import Item
 from python.exceptions.exceptions import CannotEvaluateNonItemException, CannotEvaluateItemException
 

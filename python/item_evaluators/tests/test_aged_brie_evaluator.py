@@ -2,7 +2,7 @@ import pytest
 
 from python.exceptions.exceptions import CannotEvaluateNonItemException, CannotEvaluateItemException
 from python.item import Item
-from python.item_evaluator.aged_brie_evaluator import AgedBrieEvaluator
+from python.item_evaluators.aged_brie_evaluator import AgedBrieEvaluator
 
 AGED_BRIE_NAME = "Aged Brie"
 MAX_ITEM_QUALITY = 50
