@@ -12,7 +12,7 @@ class GildedRose(object):
         self.items = items
         self.item_evaluator_factory = ItemEvaluatorFactory()
 
-    def update_quality(self):
+    def update_quality(self) -> None:
         for item in self.items:
             evaluator = self.item_evaluator_factory.create(item.name)
             evaluator.evaluate(item)
