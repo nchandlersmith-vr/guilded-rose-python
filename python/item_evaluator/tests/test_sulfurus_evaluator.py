@@ -80,6 +80,7 @@ class TestSulfurasEvaluator:
         assert result.quality == expected_quality
 
     def test_evaluate_throws_error_when_not_item_input(self):
-        with pytest.raises(CannotEvaluateNonItemException):
+        with pytest.raises(CannotEvaluateNonItemException) as exc_info:
             evaluator = SulfurasEvaluator()
             evaluator.evaluate("")
+        assert str(exc_info.value) == "Evaluator expected Item. Received <class 'str'>."
