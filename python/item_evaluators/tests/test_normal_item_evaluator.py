@@ -1,6 +1,6 @@
 import pytest
 
-from python.exceptions.exceptions import CannotEvaluateNonItemException
+from python.exceptions.cannot_evaluate_non_item_exception import CannotEvaluateNonItemException
 from python.item import Item
 from python.item_evaluators.normal_item_evaluator import NormalItemEvaluator
 
