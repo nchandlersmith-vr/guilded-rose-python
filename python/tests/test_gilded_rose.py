@@ -1,6 +1,9 @@
+import pytest
+
 from python.gilded_rose import GildedRose
 from python.item import Item
 from python.item_evaluator_factories.item_evaluator_factory import ItemEvaluatorFactory
+from python.exceptions.exceptions import UnknownItemEvaluatorFactoryException
 
 NORMAL_ITEM_NAME = "any string not already used in another name"
 AGED_BRIE_NAME = "Aged Brie"
@@ -739,3 +742,18 @@ class TestGildedRose:
         result = app.items[0]
 
         assert result.quality == expected_quality
+
+    def test_update_quality_raises_exception_when_known_factory_encountered(self):
+        items = [Item("any item", 10, 10)]
+        item_evaluator_factory = UnknownItemEvaluatorFactory
+
+        with pytest.raises(UnknownItemEvaluatorFactoryException) as exception_info:
+            GildedRose(items, item_evaluator_factory)
+        assert str(exception_info.value) == "Expected " \
+                                            "<class 'python.tests.test_gilded_rose.UnknownItemEvaluatorFactory'> " \
+                                            "to inherit from ItemEvaluatorFactoryAbstractClass"
+
+
+class UnknownItemEvaluatorFactory:
+    def create(self, name: str):
+        pass
