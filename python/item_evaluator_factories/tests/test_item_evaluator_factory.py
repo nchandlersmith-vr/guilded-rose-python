@@ -1,5 +1,3 @@
-import pytest
-
 from python.item_evaluator_factories.item_evaluator_factory import ItemEvaluatorFactory
 from python.item_evaluators.backstage_passes_evaluator import BackstagePassesEvaluator
 from python.item_evaluators.normal_item_evaluator import NormalItemEvaluator
