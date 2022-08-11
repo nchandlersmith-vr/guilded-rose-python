@@ -1,9 +1,20 @@
+from python.exceptions.exceptions import CannotEvaluateNonItemException, CannotEvaluateItemException
 from python.item import Item
 from python.item_evaluator.item_evaluator import ItemEvaluator
 
 
+def _validate_item(item):
+    if not isinstance(item, Item):
+        raise CannotEvaluateNonItemException(item)
+    if not item.name == BackstagePassesEvaluator.BACKSTAGE_PASSES_ITEM_NAME:
+        raise CannotEvaluateItemException(BackstagePassesEvaluator.BACKSTAGE_PASSES_ITEM_NAME, item.name)
+
+
 class BackstagePassesEvaluator(ItemEvaluator):
+    BACKSTAGE_PASSES_ITEM_NAME = "Backstage passes to a TAFKAL80ETC concert"
+
     def evaluate(self, item: Item) -> Item:
+        _validate_item(item)
         item.quality += 1
         if item.sell_in < 11:
             item.quality += 1

@@ -1,3 +1,6 @@
+import pytest
+
+from python.exceptions.exceptions import CannotEvaluateNonItemException, CannotEvaluateItemException
 from python.item_evaluator.backstage_passes_evaluator import BackstagePassesEvaluator
 from python.item import Item
 
@@ -250,3 +253,15 @@ class TestBackstagePasses:
         result = evaluator.evaluate(item)
 
         assert result.quality == expected_quality
+
+    def test_evaluate_throws_error_when_not_item_input(self):
+        with pytest.raises(CannotEvaluateNonItemException) as exc_info:
+            evaluator = BackstagePassesEvaluator()
+            evaluator.evaluate("")
+        assert str(exc_info.value) == "Evaluator expected Item. Received <class 'str'>."
+
+    def test_evaluate_throws_error_when_item_not_aged_brie(self):
+        with pytest.raises(CannotEvaluateItemException) as exc_info:
+            evaluator = BackstagePassesEvaluator()
+            evaluator.evaluate(Item("Sulfuras", 10, 10))
+        assert str(exc_info.value) == "Evaluator expected Backstage passes to a TAFKAL80ETC concert. Encountered Sulfuras."
